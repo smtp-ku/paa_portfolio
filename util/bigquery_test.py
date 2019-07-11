@@ -8,3 +8,5 @@ query_job = client.query("""
 results = query_job.result()  # Waits for job to complete.
 for row in results:
     print("{} : {} views".format(row.code, row.ticker))
+
+
