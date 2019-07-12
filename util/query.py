@@ -2,6 +2,16 @@ from google.cloud import bigquery
 import json
 
 
+def get_last_updated_update(table_name):
+    client = bigquery.Client.from_service_account_json('../smtp-ku-6d028799fd5f.json')
+    sql = """
+        SELECT price_date FROM `smtp-ku.paa_data.{}` ORDER BY price_date DESC LIMIT 1
+    """.format(table_name)
+    query_res = client.query(sql).result()
+    # return list(query_res)[0].price_date.strftime("%Y-%m-%d")
+    return list(query_res)[0].price_date
+
+
 def find_data_by_key(data, key):
     if key in data.keys():
         return data[key]

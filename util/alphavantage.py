@@ -3,9 +3,11 @@ from util import query
 import json
 import time
 import enum
+from datetime import datetime
 
 base_url = "https://www.alphavantage.co/query?"
 api_key = "YWK61NRAYQA1IKQ0"
+call_interval = 15
 
 
 class TimeFlag(enum.Enum):
@@ -17,7 +19,6 @@ def make_alphavantage_request_url(function_name, symbol):
     request_url = base_url
     request_url += "function=" + function_name
     request_url += "&symbol=" + symbol
-    request_url += "&outputsize=full"
     request_url += "&apikey=" + api_key
 
     return request_url
@@ -43,6 +44,9 @@ def get_monthly_adj_price_by_ticker(ticker):
         result.pop(current_month)
     except Exception:
         print(base_data)
+
+    # for alphavantage policy
+    time.sleep(call_interval)
     return result
 
 
@@ -60,6 +64,9 @@ def get_daily_adj_price_daily(ticker):
         result.pop(current_month)
     except Exception:
         print("{} {}".format(ticker, base_data))
+
+    # for alphavantage policy
+    time.sleep(call_interval)
     return result
 
 
@@ -75,18 +82,7 @@ def download_all_data(download_path, time_flag):
     for ticker_code in ticker_set:
         ticker = ticker_set[ticker_code]
         print(ticker, ticker_code)
-
         download_data_by_ticker(download_path, ticker_code, ticker, time_flag)
-
-        # if time_flag == TimeFlag.DAILY:
-        #     price_data = get_daily_adj_price_daily(ticker)
-        #     print('[SYSTEM]: Load Daily_Data Complete')
-        # elif time_flag == TimeFlag.MONTHLY:
-        #     price_data = get_monthly_adj_price_by_ticker(ticker)
-        #     print('[SYSTEM]: Load Monthly_data Complete')
-        # save_file_as_json(price_data, download_path + ticker_code + '.json')
-        # print('[SYSTEM]: Save Data Complete')
-        time.sleep(20)
 
 
 def download_data_by_ticker(download_path, code, ticker, time_flag):
@@ -99,4 +95,42 @@ def download_data_by_ticker(download_path, code, ticker, time_flag):
 
     save_file_as_json(price_data, download_path + code+ '.json')
     print('[SYSTEM]: Save Data Complete')
+
+
+def price_update_from_api():
+
+    update_daily = {}
+    update_monthly = {}
+
+    ticker_set = query.get_ticker_dict()
+    # last_updated_date = query.get_last_updated_update('tb_adj_price_daily').strftime("%Y-%m-%d")
+    last_updated_date = datetime.strptime("2019-07-09", "%Y-%m-%d")
+
+    print("[SYSTEM]: Start updating daily data from {}".format(last_updated_date))
+    for code in ticker_set:
+        recent_data = get_daily_adj_price_daily(ticker_set[code])
+        for price_date in recent_data:
+            convert_date = datetime.strptime(price_date, "%Y-%m-%d")
+            if convert_date > last_updated_date:
+                if price_date not in update_daily:
+                    update_daily[price_date] = {}
+                update_daily[price_date][code] = recent_data[price_date]
+        print("[SYSTEM]: Update complete {} ({})".format(code, ticker_set[code]))
+    print(update_daily)
+
+    print("[SYSTEM]: Start updating monthly data from {}".format(last_updated_date))
+    for code in ticker_set:
+        recent_data = get_daily_adj_price_daily(ticker_set[code])
+        for price_date in recent_data:
+            convert_date = datetime.strptime(price_date, "%Y-%m-%d")
+            if convert_date > last_updated_date:
+                if price_date not in update_monthly:
+                    update_monthly[price_date] = {}
+                update_monthly[price_date][code] = recent_data[price_date]
+        print("[SYSTEM]: Update complete {} ({})".format(code, ticker_set[code]))
+    print(update_monthly)
+
+
+
+
 

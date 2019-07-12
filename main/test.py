@@ -1,12 +1,14 @@
-from google.cloud import bigquery
+from util import query
+from datetime import datetime
 
-client = bigquery.Client.from_service_account_json('../stmp-ku-376e736c9bf6.json')
+date_1 = query.get_last_updated_update('tb_adj_price_daily').strftime("%Y-%m-%d")
+date_2 = datetime.today().strftime("%Y-%m-%d")
 
-query_job = client.query("""
-    select * from `stmp-ku.paa_data.tb_ticker`
-""")
-results = query_job.result()  # Waits for job to complete.
-for row in results:
-    print("{} : {} views".format(row.code, row.ticker))
+print(date_1)
+print(date_2)
 
+if date_1 < date_2:
+    print(1)
+else:
+    print(0)
 
