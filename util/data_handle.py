@@ -15,5 +15,5 @@ def make_total_data():
             total_data[date][ticker_code] = json_data[date]
 
     print(total_data)
-    alphavantage.save_file_as_json(total_data, '../data/sample/total.json')
+    alphavantage.save_file_as_json(total_data, '../data/sample/monthly_total.json')
 
