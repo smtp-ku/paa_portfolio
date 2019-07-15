@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c34ccacd-e4ff-413f-aa9c-95e6ed68590d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smtp/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/smtp/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smtp/paa/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/smtp/paa/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smtp/paa/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/smtp/paa/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smtp/paa/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/smtp/paa/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smtp/smtp/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/smtp/smtp/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smtp/smtp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/smtp/smtp/urls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,36 +19,64 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/main.py">
+        <entry file="file://$PROJECT_DIR$/smtp/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="171">
+              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/smtp/manage.py">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/smtp/paa/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/util/alphavantage.py">
+        <entry file="file://$PROJECT_DIR$/smtp/paa/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="760">
-              <caret line="40" column="49" selection-start-line="40" selection-start-column="49" selection-end-line="40" selection-end-column="49" />
+            <state relative-caret-position="171">
+              <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
               <folding>
-                <element signature="e#0#15#0" expanded="true" />
+                <element signature="e#0#35#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/smtp/main.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/smtp/paa/templates/ticker/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="17" lean-forward="true" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+            <state>
+              <caret column="15" selection-start-column="15" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/smtp/paa/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="4" column="42" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/smtp/smtp/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+              <folding>
+                <element signature="e#628#660#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -67,19 +100,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/smtp/app.yaml">
+        <entry file="file://$PROJECT_DIR$/smtp/smtp/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            <state relative-caret-position="-247">
+              <caret line="38" column="33" lean-forward="true" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/smtp/smtp/settings.py">
+        <entry file="file://$PROJECT_DIR$/smtp/paa/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1047">
-              <caret line="74" column="61" selection-start-line="74" selection-start-column="61" selection-end-line="74" selection-end-column="61" />
+            <state relative-caret-position="76">
+              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -89,6 +125,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
         <option value="Python Script" />
       </list>
     </option>
@@ -122,10 +159,16 @@
         <option value="$PROJECT_DIR$/venv/Lib/site-packages/django/db/backends/mysql/base.py" />
         <option value="$PROJECT_DIR$/venv/Lib/site-packages/django/db/backends/mysql/operations.py" />
         <option value="$PROJECT_DIR$/app.yaml" />
-        <option value="$PROJECT_DIR$/smtp/smtp/settings.py" />
         <option value="$PROJECT_DIR$/smtp/app.yaml" />
-        <option value="$PROJECT_DIR$/smtp/main.py" />
         <option value="$PROJECT_DIR$/smtp/requirements.txt" />
+        <option value="$PROJECT_DIR$/smtp/main.py" />
+        <option value="$PROJECT_DIR$/smtp/smtp/settings.py" />
+        <option value="$PROJECT_DIR$/smtp/paa/admin.py" />
+        <option value="$PROJECT_DIR$/smtp/smtp/urls.py" />
+        <option value="$PROJECT_DIR$/smtp/paa/models.py" />
+        <option value="$PROJECT_DIR$/smtp/paa/templates/ticker/index.html" />
+        <option value="$PROJECT_DIR$/smtp/paa/views.py" />
+        <option value="$PROJECT_DIR$/smtp/paa/urls.py" />
       </list>
     </option>
   </component>
@@ -161,6 +204,27 @@
               <item name="paa_portfolio" type="b2602c69:ProjectViewProjectNode" />
               <item name="paa_portfolio" type="462c0819:PsiDirectoryNode" />
               <item name="smtp" type="462c0819:PsiDirectoryNode" />
+              <item name="paa" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="paa_portfolio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="paa_portfolio" type="462c0819:PsiDirectoryNode" />
+              <item name="smtp" type="462c0819:PsiDirectoryNode" />
+              <item name="paa" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="paa_portfolio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="paa_portfolio" type="462c0819:PsiDirectoryNode" />
+              <item name="smtp" type="462c0819:PsiDirectoryNode" />
+              <item name="paa" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="ticker" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="paa_portfolio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="paa_portfolio" type="462c0819:PsiDirectoryNode" />
+              <item name="smtp" type="462c0819:PsiDirectoryNode" />
               <item name="smtp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -176,6 +240,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/main/test.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
@@ -269,15 +334,15 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Python Console" sideWeight="0.49894625" weight="0.329718" />
-      <window_info anchor="bottom" id="Terminal" sideWeight="0.49841937" visible="true" weight="0.329718" />
-      <window_info anchor="bottom" id="Event Log" sideWeight="0.5015806" side_tool="true" visible="true" weight="0.329718" />
+      <window_info active="true" anchor="bottom" id="Terminal" sideWeight="0.49789253" visible="true" weight="0.329718" />
+      <window_info anchor="bottom" id="Event Log" sideWeight="0.5021075" side_tool="true" visible="true" weight="0.329718" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49736565" weight="0.329718" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49578503" weight="0.329718" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49525815" weight="0.329718" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -288,38 +353,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/network/nas.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/smtp-ku-6d028799fd5f.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/monthly_data/wti_idx.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1579" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/monthly_data/topix.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-743" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/monthly_data/snp.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="88" column="31" selection-start-line="88" selection-start-column="31" selection-end-line="88" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/monthly_data/silver_idx.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1370" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/monthly_data/russell.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -523,13 +556,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/smtp/smtp/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1047">
-          <caret line="74" column="61" selection-start-line="74" selection-start-column="61" selection-end-line="74" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -563,8 +589,69 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/smtp/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="17" lean-forward="true" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        <state relative-caret-position="171">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/smtp/smtp/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-247">
+          <caret line="38" column="33" lean-forward="true" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/smtp/paa/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/smtp/smtp/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="e#628#660#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/smtp/paa/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/smtp/paa/templates/ticker/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="15" selection-start-column="15" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/smtp/paa/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/smtp/paa/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="42" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

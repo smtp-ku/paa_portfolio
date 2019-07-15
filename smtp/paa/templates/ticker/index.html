@@ -1,0 +1,9 @@
+{% if code_list %}
+    <ul>
+    {% for ticker in tickerlist %}
+        <li><a href="/ticker/{{ ticker.code }}/">{{ ticker.ticker }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
