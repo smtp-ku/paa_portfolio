@@ -2,10 +2,11 @@ from rest_framework import routers
 from django.conf.urls import url, include
 from . import views
 
-app_name = 'ticker'
+app_name = 'price'
 
 router = routers.DefaultRouter()
-router.register(r'', views.TickerView)
+router.register(r'monthly', views.MonthlyViewSet)
+router.register(r'daily', views.DailyViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),

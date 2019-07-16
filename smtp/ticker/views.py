@@ -6,3 +6,4 @@ from .serializers import TickerSerializer
 class TickerView(viewsets.ModelViewSet):
     queryset = Ticker.objects.all()
     serializer_class = TickerSerializer
+
