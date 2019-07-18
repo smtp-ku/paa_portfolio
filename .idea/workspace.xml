@@ -3,31 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="c34ccacd-e4ff-413f-aa9c-95e6ed68590d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/monthly_data/agr_idx.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/monthly_data/eurostoxx.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/monthly_data/gold_idx.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/monthly_data/high_yield.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/monthly_data/igb.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/monthly_data/ltb.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/monthly_data/mar.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/monthly_data/mem.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/monthly_data/nasdaq.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/monthly_data/russell.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/monthly_data/silver_idx.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/monthly_data/skb.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/monthly_data/snp.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/monthly_data/topix.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/monthly_data/wti_idx.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/sample/daily_total.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/sample/monthly_total.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/sample/sample.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/finance/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smtp/price/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/smtp/price/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smtp/app.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/smtp/app.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smtp/price/temp.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/smtp/price/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/smtp/price/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smtp/price/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/smtp/price/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/data_handle.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/query.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,7 +15,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/main.py">
           <provider selected="true" editor-type-id="text-editor" />
@@ -50,8 +29,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/smtp/price/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="66" column="34" selection-start-line="66" selection-start-column="34" selection-end-line="66" selection-end-column="34" />
+            <state relative-caret-position="340">
+              <caret line="106" column="38" selection-start-line="106" selection-start-column="38" selection-end-line="106" selection-end-column="38" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
               </folding>
@@ -60,10 +39,40 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/smtp/price/temp.py">
+        <entry file="file://$PROJECT_DIR$/smtp/price/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="17" lean-forward="true" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+            <state relative-caret-position="228">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
+              <folding>
+                <element signature="e#0#34#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/smtp/price/permissions.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/smtp/cron.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="38">
+              <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/smtp/app.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="13" selection-start-line="13" selection-end-line="13" />
             </state>
           </provider>
         </entry>
@@ -71,7 +80,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/smtp/price/util/alphavantage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-762">
+            <state relative-caret-position="57">
               <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
@@ -80,8 +89,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/smtp/price/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="133">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -93,7 +102,7 @@
         <entry file="file://$PROJECT_DIR$/smtp/price/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="190">
-              <caret line="10" column="29" lean-forward="true" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+              <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -135,7 +144,6 @@
         <option value="$PROJECT_DIR$/venv/Lib/site-packages/django/db/backends/mysql/base.py" />
         <option value="$PROJECT_DIR$/venv/Lib/site-packages/django/db/backends/mysql/operations.py" />
         <option value="$PROJECT_DIR$/app.yaml" />
-        <option value="$PROJECT_DIR$/smtp/app.yaml" />
         <option value="$PROJECT_DIR$/smtp/main.py" />
         <option value="$PROJECT_DIR$/smtp/paa/admin.py" />
         <option value="$PROJECT_DIR$/smtp/paa/models.py" />
@@ -151,7 +159,6 @@
         <option value="$PROJECT_DIR$/smtp/ticker/urls.py" />
         <option value="$PROJECT_DIR$/smtp/ticker/models.py" />
         <option value="$PROJECT_DIR$/smtp/ticker/views.py" />
-        <option value="$PROJECT_DIR$/smtp/price/urls.py" />
         <option value="$PROJECT_DIR$/smtp/smtp/urls.py" />
         <option value="$PROJECT_DIR$/smtp/smtp/settings.py" />
         <option value="$PROJECT_DIR$/smtp/requirements.txt" />
@@ -160,6 +167,10 @@
         <option value="$PROJECT_DIR$/main/test.py" />
         <option value="$PROJECT_DIR$/smtp/price/util/alphavantage.py" />
         <option value="$PROJECT_DIR$/smtp/price/temp.py" />
+        <option value="$PROJECT_DIR$/smtp/price/urls.py" />
+        <option value="$PROJECT_DIR$/smtp/price/permissions.py" />
+        <option value="$PROJECT_DIR$/smtp/app.yaml" />
+        <option value="$PROJECT_DIR$/smtp/cron.yaml" />
         <option value="$PROJECT_DIR$/smtp/price/views.py" />
       </list>
     </option>
@@ -231,6 +242,7 @@
       <recent name="D:\git\paa_portfolio\util" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\git\paa_portfolio\smtp" />
       <recent name="D:\git\paa_portfolio\smtp\price\util" />
       <recent name="D:\git\paa_portfolio\smtp\ticker\templates\ticker" />
       <recent name="D:\git\paa_portfolio\smtp\ticker" />
@@ -312,15 +324,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49838188" visible="true" weight="0.18967333" />
       <window_info id="Structure" order="2" sideWeight="0.50161815" side_tool="true" weight="0.18967333" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Python Console" sideWeight="0.49736565" weight="0.329718" />
-      <window_info active="true" anchor="bottom" id="Terminal" sideWeight="0.49420443" visible="true" weight="0.329718" />
-      <window_info anchor="bottom" id="Event Log" sideWeight="0.5057956" side_tool="true" visible="true" weight="0.329718" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49525815" weight="0.329718" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49367756" weight="0.329718" />
@@ -328,22 +335,16 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49367756" visible="true" weight="0.329718" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50632244" side_tool="true" visible="true" weight="0.329718" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49736565" weight="0.329718" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/data/daily_data/wti_idx.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/sample/daily_total.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27911">
-          <caret line="1469" selection-start-line="1469" selection-end-line="1469" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/daily_data/skb.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-46248" />
@@ -397,54 +398,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/smtp/paa/templates/ticker/detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="5" lean-forward="true" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/smtp/paa/apps.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/smtp/paa/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" selection-start-line="1" selection-end-line="3" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/smtp/paa/templates/ticker/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="50" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/smtp/paa/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="43" selection-start-line="43" selection-end-line="46" selection-end-column="57" />
-          <folding>
-            <element signature="e#0#54#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/smtp/paa/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/smtp/paa/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/smtp/paa/templates/ticker/detail.html" />
+    <entry file="file://$PROJECT_DIR$/smtp/paa/apps.py" />
+    <entry file="file://$PROJECT_DIR$/smtp/paa/admin.py" />
+    <entry file="file://$PROJECT_DIR$/smtp/paa/templates/ticker/index.html" />
+    <entry file="file://$PROJECT_DIR$/smtp/paa/views.py" />
+    <entry file="file://$PROJECT_DIR$/smtp/paa/urls.py" />
+    <entry file="file://$PROJECT_DIR$/smtp/paa/models.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/importlib/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
@@ -452,20 +412,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/smtp/ticker/templates/ticker/detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/smtp/ticker/templates/ticker/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/smtp/ticker/templates/ticker/detail.html" />
+    <entry file="file://$PROJECT_DIR$/smtp/ticker/templates/ticker/index.html" />
     <entry file="file://$PROJECT_DIR$/smtp/ticker/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -508,13 +456,6 @@
           <folding>
             <element signature="e#0#34#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/smtp/price/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
     </entry>
@@ -583,13 +524,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/smtp/app.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="14" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/util/alphavantage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2318">
@@ -600,26 +534,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/util/query.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="26" lean-forward="true" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/util/data_handle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="62" lean-forward="true" selection-start-line="9" selection-start-column="62" selection-end-line="9" selection-end-column="62" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/util/query.py" />
+    <entry file="file://$PROJECT_DIR$/util/data_handle.py" />
     <entry file="file://$PROJECT_DIR$/smtp/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -634,12 +550,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/main.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/smtp/manage.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/rest_framework/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
@@ -647,48 +557,73 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/smtp/price/models.py">
+    <entry file="file://$PROJECT_DIR$/smtp/price/remain.json" />
+    <entry file="file://$PROJECT_DIR$/smtp/price/temp.py" />
+    <entry file="file://$PROJECT_DIR$/main/main.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/smtp/manage.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/smtp/price/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="29" lean-forward="true" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+        <state relative-caret-position="228">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/smtp/price/permissions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/smtp/cron.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/smtp/app.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/smtp/price/util/alphavantage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-762">
+        <state relative-caret-position="57">
           <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/smtp/price/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="133">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/smtp/price/remain.json">
+    <entry file="file://$PROJECT_DIR$/smtp/price/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="24" lean-forward="true" selection-end-line="14437" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/smtp/price/temp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="17" lean-forward="true" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        <state relative-caret-position="190">
+          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/smtp/price/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="66" column="34" selection-start-line="66" selection-start-column="34" selection-end-line="66" selection-end-column="34" />
+        <state relative-caret-position="340">
+          <caret line="106" column="38" selection-start-line="106" selection-start-column="38" selection-end-line="106" selection-end-column="38" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
           </folding>

@@ -4,7 +4,7 @@ from . import views
 
 app_name = 'price'
 
-router = routers.DefaultRouter()
+router = routers.SimpleRouter()
 router.register(r'monthly', views.MonthlyViewSet)
 router.register(r'daily', views.DailyViewSet)
 

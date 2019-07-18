@@ -1,0 +1,4 @@
+cron:
+- description: "daily price update job"
+  url: /price/daily/update_price/
+  schedule: every 10 hours
