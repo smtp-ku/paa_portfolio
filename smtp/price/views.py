@@ -1,6 +1,7 @@
 from rest_framework import viewsets, filters
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from django.utils import timezone as tz
 from .models import Monthly, Daily
 from .permissions import UserPermission
 from . import serializers
@@ -8,6 +9,8 @@ from .util import alphavantage
 from ticker.models import Ticker
 from datetime import datetime
 from pytz import timezone
+from enum import Enum
+import calendar
 
 eastern = timezone('US/Eastern')
 temp_res = {'2019-07-15': {'snp': '35490.0000', 'nasdaq': '10345.0000', 'russell': '10420.0000',
@@ -15,6 +18,23 @@ temp_res = {'2019-07-15': {'snp': '35490.0000', 'nasdaq': '10345.0000', 'russell
                            'mar': '13815.0000', 'wti_idx': '4195.0000', 'agr_idx': '4985.0000',
                            'silver_idx': '3400.0000', 'gold_idx': '10205.0000', 'high_yield': '11730.0000',
                            'igb': '104630.0000', 'ltb': '11310.0000', 'skb': '56730.0000'}}
+
+
+class TimeFlag(Enum):
+    DAILY = 0
+    MONTHLY = 1
+
+
+def month_delta(date, delta):
+    m, y = (date.month+delta) % 12, date.year + (date.month + delta - 1) // 12
+    if not m:
+        m = 12
+    d = min(date.day, calendar.monthrange(y, m)[1])
+    return date.replace(day=d, month=m, year=y)
+
+
+def get_lookback_date(lookback_period):
+    return month_delta(tz.now(), (lookback_period * -1));
 
 
 def get_client_ip(request):
@@ -30,7 +50,14 @@ class MonthlyViewSet(viewsets.ModelViewSet):
     queryset = Monthly.objects.all()
     serializer_class = serializers.MonthlySerializer
     filter_backends = [filters.OrderingFilter]
-    permission_classes = [UserPermission]
+    # permission_classes = [UserPermission]
+
+    def get_queryset(self):
+        if 'lb' in self.request.query_params:
+            lookback_period = int(self.request.query_params['lb'])
+            lookback_date = get_lookback_date(lookback_period)
+            self.queryset = Monthly.objects.order_by('-price_date').filter(price_date__gte=lookback_date)
+        return self.queryset
 
     @action(detail=False)
     def update_price(self, request):
@@ -78,6 +105,13 @@ class DailyViewSet(viewsets.ModelViewSet):
     queryset = Daily.objects.all()
     serializer_class = serializers.DailySerializer
     filter_backends = [filters.OrderingFilter]
+
+    def get_queryset(self):
+        if 'lb' in self.request.query_params:
+            lookback_period = int(self.request.query_params['lb'])
+            lookback_date = get_lookback_date(lookback_period)
+            self.queryset = Daily.objects.order_by('-price_date').filter(price_date__gte=lookback_date)
+        return self.queryset
 
     @action(detail=False)
     def update_price(self, request):
