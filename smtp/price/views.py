@@ -34,36 +34,44 @@ class MonthlyViewSet(viewsets.ModelViewSet):
 
     @action(detail=False)
     def update_price(self, request):
-        ticker_set = Ticker.objects.all()
-        last_update_date = Monthly.objects.order_by('-price_date').first().price_date
-        update_data = {}
-        update_result = {}
+        client_ip = get_client_ip(request)
+        # Allow only for Cron
+        if client_ip == '0.1.0.1':
+            ticker_set = Ticker.objects.all()
+            last_update_date = Monthly.objects.order_by('-price_date').first().price_date
+            update_data = {}
+            update_result = {}
+            print("[SYSTEM]Last Update Date: "+str(last_update_date))
 
-        for ticker_object in ticker_set:
-            recent_data = alphavantage.get_monthly_adj_price_by_ticker(ticker_object.ticker)
-            for price_date in recent_data:
-                convert_date = eastern.localize(datetime.strptime(price_date, "%Y-%m-%d"))
-                if convert_date > last_update_date and convert_date.date() != datetime.now().date():
-                    if price_date not in update_data:
-                        update_data[price_date] = {}
-                    update_data[price_date][ticker_object.code] = recent_data[price_date]
-                    print(update_data)
-            print("[SYSTEM]: Update complete {} ({})".format(ticker_object.code, ticker_object.ticker))
+            for ticker_object in ticker_set:
+                recent_data = alphavantage.get_monthly_adj_price_by_ticker(ticker_object.ticker)
+                for price_date in recent_data:
+                    convert_date = eastern.localize(datetime.strptime(price_date, "%Y-%m-%d"))
+                    if convert_date.date() > last_update_date.date() and convert_date.date() != datetime.now().date():
+                        if price_date not in update_data:
+                            update_data[price_date] = {}
+                        update_data[price_date][ticker_object.code] = recent_data[price_date]
+                        print(update_data)
+                print("[SYSTEM]: Update complete {} ({})".format(ticker_object.code, ticker_object.ticker))
 
-        for key in update_data:
-            input_data = {}
-            prices = update_data[key]
-            for code in prices:
-                input_data[code] = float(prices[code])
-            input_data['price_date'] = datetime.strptime(key, "%Y-%m-%d")
-            print(input_data)
-            serializer = serializers.MonthlySerializer(data=input_data)
-            if serializer.is_valid():
-                serializer.save()
-                update_result[key] = update_data[key]
-            else:
-                print("data is not valid")
-        return Response(update_result)
+            for key in update_data:
+                input_data = {}
+                prices = update_data[key]
+                for code in prices:
+                    input_data[code] = float(prices[code])
+                input_data['price_date'] = datetime.strptime(key, "%Y-%m-%d")
+                # print(input_data)
+                serializer = serializers.MonthlySerializer(data=input_data)
+                if serializer.is_valid():
+                    serializer.save()
+                    update_result[key] = update_data[key]
+                else:
+                    print("[SYSTEM]: data is not valid")
+            return Response(update_result)
+        else:
+            print("[SYSTEM] Not Cron Request, Request IP: "+str(client_ip))
+            return Response({'msg': "Not Cron Request",
+                             'IP': str(client_ip)})
 
 
 class DailyViewSet(viewsets.ModelViewSet):
@@ -74,12 +82,13 @@ class DailyViewSet(viewsets.ModelViewSet):
     @action(detail=False)
     def update_price(self, request):
         client_ip = get_client_ip(request)
+        # Allow only for Cron
         if client_ip == '0.1.0.1':
             ticker_set = Ticker.objects.all()
             last_update_date = Daily.objects.order_by('-price_date').first().price_date
             update_data = {}
             update_result = {}
-            print(last_update_date)
+            print("[SYSTEM]Last Update Date: "+str(last_update_date))
 
             for ticker_object in ticker_set:
                 recent_data = alphavantage.get_daily_adj_price_daily(ticker_object.ticker)
@@ -98,15 +107,15 @@ class DailyViewSet(viewsets.ModelViewSet):
                 for code in prices:
                     input_data[code] = float(prices[code])
                 input_data['price_date'] = datetime.strptime(key, "%Y-%m-%d")
-                print(input_data)
+                # print(input_data)
                 serializer = serializers.DailySerializer(data=input_data)
                 if serializer.is_valid():
                     serializer.save()
                     update_result[key] = update_data[key]
                 else:
-                    print("data is not valid")
+                    print("[SYSTEM]: data is not valid")
             return Response(update_result)
         else:
-            print("Not Cron Request, Request IP: "+str(client_ip))
+            print("[SYSTEM] Not Cron Request, Request IP: "+str(client_ip))
             return Response({'msg': "Not Cron Request",
                              'IP': str(client_ip)})

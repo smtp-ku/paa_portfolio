@@ -1,4 +1,9 @@
 cron:
-- description: "daily price update job"
+- description: "Monthly price update job"
+  url: /price/monthly/update_price/
+  schedule: 2 of month 11:00
+
+
+- description: "Daily price update job"
   url: /price/daily/update_price/
-  schedule: every 10 hours
+  schedule: every day 11:00
