@@ -3,25 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c34ccacd-e4ff-413f-aa9c-95e6ed68590d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/daily_data/agr_idx.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/daily_data/eurostoxx.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/daily_data/gold_idx.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/daily_data/high_yield.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/daily_data/igb.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/daily_data/ltb.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/daily_data/mar.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/daily_data/mem.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/daily_data/nasdaq.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/daily_data/russell.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/daily_data/silver_idx.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/daily_data/skb.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/daily_data/snp.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/daily_data/topix.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/daily_data/wti_idx.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smtp/price/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/smtp/price/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/alphavantage.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,11 +13,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2">
-              <caret line="2" column="21" lean-forward="true" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+            <state relative-caret-position="207">
+              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -44,7 +29,7 @@
         <entry file="file://$PROJECT_DIR$/smtp/price/util/alphavantage.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="342">
-              <caret line="27" column="32" lean-forward="true" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
+              <caret line="42" column="42" lean-forward="true" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="42" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -52,14 +37,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/smtp/price/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="52" column="6" selection-start-line="52" selection-start-column="6" selection-end-line="52" selection-end-column="6" />
+            <state relative-caret-position="-154">
+              <caret line="45" column="13" lean-forward="true" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="19">
+              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
         </entry>
@@ -127,8 +121,8 @@
         <option value="$PROJECT_DIR$/smtp/price/permissions.py" />
         <option value="$PROJECT_DIR$/smtp/app.yaml" />
         <option value="$PROJECT_DIR$/smtp/cron.yaml" />
-        <option value="$PROJECT_DIR$/main/main.py" />
         <option value="$PROJECT_DIR$/smtp/price/views.py" />
+        <option value="$PROJECT_DIR$/main/main.py" />
       </list>
     </option>
   </component>
@@ -556,10 +550,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/smtp/price/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-154">
+          <caret line="45" column="13" lean-forward="true" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/smtp/price/util/alphavantage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
-          <caret line="27" column="32" lean-forward="true" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
+          <caret line="42" column="42" lean-forward="true" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="42" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
@@ -568,17 +572,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2">
-          <caret line="2" column="21" lean-forward="true" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/smtp/price/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="52" column="6" selection-start-line="52" selection-start-column="6" selection-end-line="52" selection-end-column="6" />
+        <state relative-caret-position="207">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
           <folding>
-            <element signature="e#0#44#0" expanded="true" />
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
