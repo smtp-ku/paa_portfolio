@@ -7,6 +7,7 @@ app_name = 'price'
 router = routers.SimpleRouter()
 router.register(r'monthly', views.MonthlyViewSet)
 router.register(r'daily', views.DailyViewSet)
+router.register(r'compat', views.CompatViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),

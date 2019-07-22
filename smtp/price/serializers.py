@@ -1,5 +1,11 @@
 from rest_framework import serializers
-from .models import Monthly, Daily
+from .models import Monthly, Daily, Compat
+
+
+class CompatSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Compat
+        fields = '__all__'
 
 
 class MonthlySerializer(serializers.ModelSerializer):

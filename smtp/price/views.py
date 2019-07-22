@@ -2,7 +2,7 @@ from rest_framework import viewsets, filters
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.utils import timezone as tz
-from .models import Monthly, Daily
+from .models import Monthly, Daily, Compat
 from .permissions import UserPermission
 from . import serializers
 from .util import alphavantage
@@ -44,6 +44,12 @@ def get_client_ip(request):
     else:
         ip = request.META.get('REMOTE_ADDR')
     return ip
+
+
+class CompatViewSet(viewsets.ModelViewSet):
+    queryset = Compat.objects.all()
+    serializer_class = serializers.CompatSerializer
+    filter_backends = [filters.OrderingFilter]
 
 
 class MonthlyViewSet(viewsets.ModelViewSet):

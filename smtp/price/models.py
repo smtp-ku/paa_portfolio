@@ -1,4 +1,15 @@
 from django.db import models
+from ticker.models import Ticker
+
+
+class Compat(models.Model):
+    date = models.DateTimeField()
+    ticker = models.ForeignKey(Ticker, on_delete=models.CASCADE)
+    price = models.FloatField()
+    isEndofMonth = models.BooleanField()
+
+    def __str__(self):
+        return str(self.date)
 
 
 class Monthly(models.Model):
