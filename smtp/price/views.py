@@ -1,4 +1,4 @@
-from rest_framework import viewsets, filters
+from rest_framework import viewsets, filters, pagination
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.utils import timezone as tz
@@ -10,6 +10,7 @@ from ticker.models import Ticker
 from datetime import datetime
 from pytz import timezone
 from enum import Enum
+from pandas.tseries.offsets import BMonthEnd
 import calendar
 
 eastern = timezone('US/Eastern')
@@ -46,10 +47,67 @@ def get_client_ip(request):
     return ip
 
 
+class LargeResultsSetPagination(pagination.PageNumberPagination):
+    page_size = 1000
+    page_size_query_param = 'page_size'
+    max_page_size = 10000
+
+
 class CompatViewSet(viewsets.ModelViewSet):
-    queryset = Compat.objects.all()
+    queryset = Compat.objects.order_by('-date')
     serializer_class = serializers.CompatSerializer
     filter_backends = [filters.OrderingFilter]
+    pagination_class = LargeResultsSetPagination
+
+    def get_queryset(self):
+        if 'start' in self.request.query_params:
+            start_date_string = self.request.query_params['start']
+            start_date = datetime.strptime(start_date_string, "%Y%m%d")
+            self.queryset = self.queryset.filter(date__gte=start_date)
+        if 'codes' in self.request.query_params:
+            ticker_code_group = self.request.query_params['codes']
+            ticker_code_list = ticker_code_group.split(',')
+            self.queryset = self.queryset.filter(ticker__code__in=ticker_code_list)
+        return self.queryset
+
+    @action(detail=False)
+    def update_price(self, request):
+        client_ip = get_client_ip(request)
+        # Allow only for Cron
+        if client_ip == '0.1.0.1':
+            update_result = []
+            ticker_set = Ticker.objects.all()
+            offset = BMonthEnd()
+            for ticker_object in ticker_set:
+                print(ticker_object.code)
+                last_update_query = Compat.objects.order_by('-date').filter(ticker_id=ticker_object.id).first()
+                if last_update_query is not None:
+                    last_update_date = Compat.objects.order_by('-date').filter(ticker_id=ticker_object.id).first().date
+                else:
+                    last_update_date = datetime.strptime('1900-01-01', '%Y-%m-%d')
+                recent_data = alphavantage.get_daily_adj_price_daily(ticker_object.ticker)
+                for date in recent_data:
+                    convert_date = eastern.localize(datetime.strptime(date, "%Y-%m-%d"))
+                    if convert_date.date() > last_update_date.date() and convert_date.date() != datetime.now().date():
+                        input_data = {
+                            'date': datetime.strptime(date, "%Y-%m-%d"),
+                            'price': float(recent_data[date]),
+                            'isEndofMonth': int(offset.rollforward(convert_date) == convert_date),
+                            'ticker': ticker_object.id
+                        }
+                        print(input_data)
+                        serializer = serializers.CompatSerializer(data=input_data)
+                        if serializer.is_valid():
+                            serializer.save()
+                            update_result.append(input_data)
+                        else:
+                            print(serializer.errors)
+                            print("[SYSTEM]: data is not valid")
+            return Response(update_result)
+        else:
+            print("[SYSTEM] Not Cron Request, Request IP: " + str(client_ip))
+            return Response({'msg': "Not Cron Request",
+                             'IP': str(client_ip)})
 
 
 class MonthlyViewSet(viewsets.ModelViewSet):

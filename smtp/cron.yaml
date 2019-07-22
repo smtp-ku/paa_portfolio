@@ -1,9 +1,12 @@
 cron:
-- description: "Monthly price update job"
-  url: /price/monthly/update_price/
-  schedule: 2 of month 11:00
-
-
-- description: "Daily price update job"
-  url: /price/daily/update_price/
-  schedule: every day 11:00
+#- description: "Monthly price update job"
+#  url: /price/monthly/update_price/
+#  schedule: 2 of month 11:00
+#
+#
+#- description: "Daily price update job"
+#  url: /price/daily/update_price/
+#  schedule: every day 11:00
+  - description: "Compat price update job"
+    url: /price/compat/update_price/
+    schedule: every day 11:00
