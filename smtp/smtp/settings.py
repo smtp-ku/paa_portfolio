@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'ticker.apps.TickerConfig',
-    'price.apps.PriceConfig'
+    'price.apps.PriceConfig',
+    'measure.apps.MeasureConfig'
 ]
 
 MIDDLEWARE = [
