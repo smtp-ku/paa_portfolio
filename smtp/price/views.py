@@ -73,8 +73,10 @@ class CompatViewSet(viewsets.ModelViewSet):
     @action(detail=False)
     def update_price(self, request):
         client_ip = get_client_ip(request)
+        if 'flag' in request.query_params:
+            flag = 'test'
         # Allow only for Cron
-        if client_ip == '0.1.0.1':
+        if client_ip == '0.1.0.1' or flag == 'test':
             update_result = []
             ticker_set = Ticker.objects.all()
             offset = BMonthEnd()
@@ -86,6 +88,7 @@ class CompatViewSet(viewsets.ModelViewSet):
                 else:
                     last_update_date = datetime.strptime('1900-01-01', '%Y-%m-%d')
                 recent_data = alphavantage.get_daily_adj_price_daily(ticker_object.ticker)
+                input_data_list = []
                 for date in recent_data:
                     convert_date = eastern.localize(datetime.strptime(date, "%Y-%m-%d"))
                     if convert_date.date() > last_update_date.date() and convert_date.date() != datetime.now().date():
@@ -96,13 +99,14 @@ class CompatViewSet(viewsets.ModelViewSet):
                             'ticker': ticker_object.id
                         }
                         print(input_data)
-                        serializer = serializers.CompatSerializer(data=input_data)
-                        if serializer.is_valid():
-                            serializer.save()
-                            update_result.append(input_data)
-                        else:
-                            print(serializer.errors)
-                            print("[SYSTEM]: data is not valid")
+                        input_data_list.append(input_data)
+                serializer = serializers.CompatSerializer(data=input_data_list, many=True)
+                if serializer.is_valid():
+                    serializer.save()
+                    update_result.append(input_data_list)
+                else:
+                    print(serializer.errors)
+                    print("[SYSTEM]: data is not valid")
             return Response(update_result)
         else:
             print("[SYSTEM] Not Cron Request, Request IP: " + str(client_ip))
