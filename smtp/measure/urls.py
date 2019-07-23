@@ -5,6 +5,8 @@ from . import views
 app_name = 'measure'
 
 router = routers.SimpleRouter()
+router.register(r'scenario', views.ScenarioViewSet)
+
 
 urlpatterns = [
     url(r'^', include(router.urls)),
