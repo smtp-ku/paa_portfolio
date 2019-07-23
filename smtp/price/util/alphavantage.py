@@ -19,6 +19,7 @@ def make_alphavantage_request_url(function_name, symbol):
     request_url = base_url
     request_url += "function=" + function_name
     request_url += "&symbol=" + symbol
+    request_url += "&outputsize=full"
     request_url += "&apikey=" + api_key
 
     return request_url
