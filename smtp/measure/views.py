@@ -2,52 +2,88 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from . import serializers
-from .models import Scenario, InvestReport
+from .models import Scenario, Portfolio
 from price.models import Compat
 from price.views import TimeFlag
+from datetime import datetime
 import statistics
 import operator
 
 
-def get_start_date(price_data, lookback_period):
+def make_target_list(price_data, lookback_period):
     start_date = ""
+    end_date = ""
     for code in price_data:
         code_dates = list(price_data[code].keys())
         if len(code_dates) < lookback_period:
             price_data.pop(code)
         else:
             start_of_code = code_dates[lookback_period]
+            end_of_code = code_dates[len(code_dates)-1]
             if start_of_code > start_date:
                 start_date = start_of_code
-    return start_date
+            if end_of_code < end_date or end_date == "":
+                end_date = end_of_code
+    standard_price = price_data[list(price_data.keys())[0]]
+    target_list = []
+    for date in standard_price:
+        if start_date < date < end_date:
+            target_list.append(date)
+    return target_list
 
 
-def get_momentum(target_date, price_data, lookback_period):
+def get_bond_ratio(asset_cnt, positive_cnt, protection_degree):
+    protection_value = (protection_degree*asset_cnt)/4
+    denominator = asset_cnt - protection_value
+    numerator = asset_cnt - positive_cnt
+    ratio = numerator / denominator
+    return ratio
+
+
+def get_momentum(target_date, price_data, lookback_period, protection, ref_num=6):
+
+    # Initialize
+    result_set = {}
+    mom_set = {}
+    portfolio = {}
+    positive_cnt = 0
     denominator = 0
     for i in range(0, lookback_period+1):
         denominator += i
 
-    result_set = {
-        'target_date': target_date
-    }
-    mom_set = {}
-
-    price_set = {}
+    # Calculate Momentum
     for code in price_data:
         code_price = price_data[code]
-        keylist = list(code_price.keys())
-        target_index = keylist.index(target_date)
-        start_date = keylist[target_index-1]
-        result_set['start_date'] = start_date
+        date_list = list(code_price.keys())
+
+        target_index = date_list.index(target_date)
+        start_date = date_list[target_index-1]
         code_sma = 0
         for i in range(1, lookback_period+1):
-            price = code_price[keylist[target_index-i]]
+            price = code_price[date_list[target_index-i]]
             code_sma += price*(13-i)/denominator
         code_mom = (code_price[start_date]/code_sma)-1
-        price_set[code] = code_mom
-    for code in sorted(price_set, key=operator.itemgetter(1), reverse=True):
-        mom_set[code] = price_set[code]
+        if code_mom > 0:
+            positive_cnt += 1
+        mom_set[code] = code_mom
+
+    # Calculate Bond Ratio
+    if positive_cnt >= ref_num:
+        bond_ratio = get_bond_ratio(len(price_data), ref_num, protection)
+    else:
+        bond_ratio = 1
+    asset_ratio = 1 - bond_ratio
+
+    sorted_mom = sorted(mom_set.items(), key=operator.itemgetter(1), reverse=True)
+    for i in range(0, ref_num):
+        portfolio[sorted_mom[i][0]] = asset_ratio/ref_num
+
+    # Make Portfolio
     result_set['momentum'] = mom_set
+    result_set['isInvestable'] = positive_cnt >= ref_num
+    result_set['bond_ratio'] = bond_ratio
+    result_set['portfolio'] = portfolio
+
     return result_set
 
 
@@ -57,6 +93,8 @@ class ScenarioViewSet(viewsets.ModelViewSet):
 
     @action(detail=False)
     def make_scenario(self, request):
+
+        # Validate Parameters
         params = request.query_params
         if not params.keys() & {'lb', 'codes', 'protection', 'time_flag'}:
             print('not valid')
@@ -74,6 +112,16 @@ class ScenarioViewSet(viewsets.ModelViewSet):
             except Exception:
                 return Response({'msg': str(Exception)})
 
+        result = {
+            'lookback_period': lookback_period,
+            'ticker_list': ticker_code_list,
+            'protection_degree': protection,
+            'time_flag': params['time_flag'],
+            'created_date': datetime.now()
+        }
+        # TODO Scenario serialize
+
+        # Make Price Data for Portfolio
         price_data = {}
         if time_flag == TimeFlag.DAILY:
             for ticker_code in ticker_code_list:
@@ -94,9 +142,16 @@ class ScenarioViewSet(viewsets.ModelViewSet):
                     ticker_data[compat.date.date().strftime('%Y-%m')] = compat.price
                 price_data[ticker_code] = ticker_data
 
-        start_date = get_start_date(price_data, lookback_period)
-        test = get_momentum(start_date, price_data, lookback_period)
+        # Make Target List
+        target_list = make_target_list(price_data, lookback_period)
 
-        return Response(test)
+        # Make Portfolio
+        portfoilo = {}
+        for target_date in target_list:
+            # TODO Portfolio Serialize
+            portfoilo[target_date] = get_momentum(target_date, price_data, lookback_period, protection, ref_num=6)
+        result['portfolio'] = portfoilo
+
+        return Response(result)
 
 

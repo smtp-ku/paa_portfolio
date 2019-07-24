@@ -7,9 +7,10 @@ class Scenario(models.Model):
     ticker_list = ListCharField(base_field=models.CharField(max_length=20), size=100, max_length=(20*110))
     protection_degree = models.IntegerField()
     time_flag = models.SmallIntegerField()
+    created_date = models.DateTimeField()
 
 
-class InvestReport(models.Model):
+class Portfolio(models.Model):
     scenario = models.ForeignKey(Scenario, on_delete=models.CASCADE)
     invest_date = models.DateTimeField()
     invest_plan = JSONField()

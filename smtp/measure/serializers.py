@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Scenario, InvestReport
+from .models import Scenario, Portfolio
 
 
 class ScenarioSerializer(serializers.ModelSerializer):
@@ -8,7 +8,7 @@ class ScenarioSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class InvestReportSerializer(serializers.ModelSerializer):
+class PortfolioSerializer(serializers.ModelSerializer):
     class Meta:
-        model = InvestReport
+        model = Portfolio
         fields = '__all__'
