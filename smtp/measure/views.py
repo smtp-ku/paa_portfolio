@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, pagination
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from . import serializers
@@ -27,7 +27,7 @@ def make_target_list(price_data, lookback_period):
     standard_price = price_data[list(price_data.keys())[0]]
     target_list = []
     for date in standard_price:
-        if start_date < date < end_date:
+        if start_date < date <= end_date:
             target_list.append(date)
     return target_list
 
@@ -40,7 +40,24 @@ def get_bond_ratio(asset_cnt, positive_cnt, protection_degree):
     return ratio
 
 
-def get_momentum(target_date, price_data, lookback_period, protection, ref_num=6):
+def get_average_price(ticker_code, target_date):
+    year = target_date.split('-')[0]
+    month = target_date.split('-')[1]
+
+    month_data = Compat.objects.filter(
+        ticker__code=ticker_code,
+        date__year__gte=year,
+        date__month__gte=month,
+        date__year__lte=year,
+        date__month__lte=month
+    )
+    month_price_list = []
+    for data in month_data:
+        month_price_list.append(float(data.price))
+    return statistics.mean(month_price_list)
+
+
+def make_portfolio(target_date, price_data, lookback_period, protection, ref_num=6):
 
     # Initialize
     result_set = {}
@@ -56,12 +73,17 @@ def get_momentum(target_date, price_data, lookback_period, protection, ref_num=6
         code_price = price_data[code]
         date_list = list(code_price.keys())
 
+        if target_date not in date_list:
+            date_list.append(target_date)
+            date_list.sort()
+            code_price[target_date] = get_average_price(code, target_date)
+
         target_index = date_list.index(target_date)
         start_date = date_list[target_index-1]
         code_sma = 0
         for i in range(1, lookback_period+1):
             price = code_price[date_list[target_index-i]]
-            code_sma += price*(13-i)/denominator
+            code_sma += price*(lookback_period+1-i)/denominator
         code_mom = (code_price[start_date]/code_sma)-1
         if code_mom > 0:
             positive_cnt += 1
@@ -74,22 +96,44 @@ def get_momentum(target_date, price_data, lookback_period, protection, ref_num=6
         bond_ratio = 1
     asset_ratio = 1 - bond_ratio
 
+    # Make Portfolio
     sorted_mom = sorted(mom_set.items(), key=operator.itemgetter(1), reverse=True)
     for i in range(0, ref_num):
         portfolio[sorted_mom[i][0]] = asset_ratio/ref_num
 
-    # Make Portfolio
+    # Calculate Revenue
+    total_revenue = 0
+    for code in portfolio:
+        code_price = price_data[code]
+        target_index = date_list.index(target_date)
+        start_price = code_price[date_list[target_index - 1]]
+        target_price = code_price[date_list[target_index]]
+        code_revenue = (target_price-start_price)/start_price * portfolio[code]
+        total_revenue += code_revenue
+
+    # Make Result
     result_set['momentum'] = mom_set
     result_set['isInvestable'] = positive_cnt >= ref_num
     result_set['bond_ratio'] = bond_ratio
     result_set['portfolio'] = portfolio
+    if datetime.now().strftime("%Y-%m") == target_date:
+        result_set['revenue'] = "Not yet"
+    else:
+        result_set['revenue'] = total_revenue
 
     return result_set
+
+
+class LargeResultsSetPagination(pagination.PageNumberPagination):
+    page_size = 1000
+    page_size_query_param = 'page_size'
+    max_page_size = 10000
 
 
 class ScenarioViewSet(viewsets.ModelViewSet):
     queryset = Scenario.objects.all()
     serializer_class = serializers.ScenarioSerializer
+    pagination_class = LargeResultsSetPagination
 
     @action(detail=False)
     def make_scenario(self, request):
@@ -149,7 +193,7 @@ class ScenarioViewSet(viewsets.ModelViewSet):
         portfoilo = {}
         for target_date in target_list:
             # TODO Portfolio Serialize
-            portfoilo[target_date] = get_momentum(target_date, price_data, lookback_period, protection, ref_num=6)
+            portfoilo[target_date] = make_portfolio(target_date, price_data, lookback_period, protection, ref_num=6)
         result['portfolio'] = portfoilo
 
         return Response(result)
