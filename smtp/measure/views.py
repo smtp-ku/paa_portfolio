@@ -10,6 +10,86 @@ import statistics
 import operator
 
 
+class LargeResultsSetPagination(pagination.PageNumberPagination):
+    page_size = 1000
+    page_size_query_param = 'page_size'
+    max_page_size = 10000
+
+
+class ScenarioViewSet(viewsets.ModelViewSet):
+    queryset = Scenario.objects.all()
+    serializer_class = serializers.ScenarioSerializer
+    pagination_class = LargeResultsSetPagination
+
+    @action(detail=False)
+    def make_scenario(self, request):
+
+        # Validate Parameters
+        params = request.query_params
+        if not params.keys() & {'lb', 'codes', 'protection', 'time_flag'}:
+            print('not valid')
+        else:
+            try:
+                lookback_period = int(params['lb'])
+                ticker_code_list = params['codes'].split(',')
+                protection = int(params['protection'])
+                if params['time_flag'] == 'daily':
+                    time_flag = TimeFlag.DAILY
+                elif params['time_flag'] == 'monthly':
+                    time_flag = TimeFlag.MONTHLY
+                else:
+                    raise Exception
+            except Exception:
+                return Response({'msg': str(Exception)})
+
+        result = {
+            'lookback_period': lookback_period,
+            'ticker_list': ticker_code_list,
+            'protection_degree': protection,
+            'time_flag': params['time_flag'],
+            'created_date': datetime.now()
+        }
+        # TODO Scenario serialize
+
+        # Make Price Data for Portfolio
+        price_data = make_price_data(ticker_code_list, time_flag)
+
+        # Make Target List
+        target_list = make_target_list(price_data, lookback_period)
+
+        # Make Portfolio
+        portfoilo = {}
+        for target_date in target_list:
+            # TODO Portfolio Serialize
+            portfoilo[target_date] = make_portfolio(target_date, price_data, lookback_period, protection, ref_num=6)
+        result['portfolio'] = portfoilo
+
+        return Response(result)
+
+
+def make_price_data(ticker_code_list, time_flag):
+    price_data = {}
+    if time_flag == TimeFlag.DAILY:
+        for ticker_code in ticker_code_list:
+            ticker_data = {}
+            compat_list = Compat.objects.order_by('date').filter(ticker__code=ticker_code)
+            for compat in compat_list:
+                if compat.date.date().strftime('%Y-%m') not in ticker_data:
+                    ticker_data[compat.date.date().strftime('%Y-%m')] = []
+                ticker_data[compat.date.date().strftime('%Y-%m')].append(compat.price)
+            for month in ticker_data:
+                ticker_data[month] = statistics.mean(ticker_data[month])
+            price_data[ticker_code] = ticker_data
+    elif time_flag == TimeFlag.MONTHLY:
+        for ticker_code in ticker_code_list:
+            ticker_data = {}
+            compat_list = Compat.objects.order_by('date').filter(ticker__code=ticker_code).filter(isEndofMonth=1)
+            for compat in compat_list:
+                ticker_data[compat.date.date().strftime('%Y-%m')] = compat.price
+            price_data[ticker_code] = ticker_data
+    return price_data
+
+
 def make_target_list(price_data, lookback_period):
     start_date = ""
     end_date = ""
@@ -123,79 +203,5 @@ def make_portfolio(target_date, price_data, lookback_period, protection, ref_num
 
     return result_set
 
-
-class LargeResultsSetPagination(pagination.PageNumberPagination):
-    page_size = 1000
-    page_size_query_param = 'page_size'
-    max_page_size = 10000
-
-
-class ScenarioViewSet(viewsets.ModelViewSet):
-    queryset = Scenario.objects.all()
-    serializer_class = serializers.ScenarioSerializer
-    pagination_class = LargeResultsSetPagination
-
-    @action(detail=False)
-    def make_scenario(self, request):
-
-        # Validate Parameters
-        params = request.query_params
-        if not params.keys() & {'lb', 'codes', 'protection', 'time_flag'}:
-            print('not valid')
-        else:
-            try:
-                lookback_period = int(params['lb'])
-                ticker_code_list = params['codes'].split(',')
-                protection = int(params['protection'])
-                if params['time_flag'] == 'daily':
-                    time_flag = TimeFlag.DAILY
-                elif params['time_flag'] == 'monthly':
-                    time_flag = TimeFlag.MONTHLY
-                else:
-                    raise Exception
-            except Exception:
-                return Response({'msg': str(Exception)})
-
-        result = {
-            'lookback_period': lookback_period,
-            'ticker_list': ticker_code_list,
-            'protection_degree': protection,
-            'time_flag': params['time_flag'],
-            'created_date': datetime.now()
-        }
-        # TODO Scenario serialize
-
-        # Make Price Data for Portfolio
-        price_data = {}
-        if time_flag == TimeFlag.DAILY:
-            for ticker_code in ticker_code_list:
-                ticker_data = {}
-                compat_list = Compat.objects.order_by('date').filter(ticker__code=ticker_code)
-                for compat in compat_list:
-                    if compat.date.date().strftime('%Y-%m') not in ticker_data:
-                        ticker_data[compat.date.date().strftime('%Y-%m')] = []
-                    ticker_data[compat.date.date().strftime('%Y-%m')].append(compat.price)
-                for month in ticker_data:
-                    ticker_data[month] = statistics.mean(ticker_data[month])
-                price_data[ticker_code] = ticker_data
-        elif time_flag == TimeFlag.MONTHLY:
-            for ticker_code in ticker_code_list:
-                ticker_data = {}
-                compat_list = Compat.objects.order_by('date').filter(ticker__code=ticker_code).filter(isEndofMonth=1)
-                for compat in compat_list:
-                    ticker_data[compat.date.date().strftime('%Y-%m')] = compat.price
-                price_data[ticker_code] = ticker_data
-
-        # Make Target List
-        target_list = make_target_list(price_data, lookback_period)
-
-        # Make Portfolio
-        portfoilo = {}
-        for target_date in target_list:
-            # TODO Portfolio Serialize
-            portfoilo[target_date] = make_portfolio(target_date, price_data, lookback_period, protection, ref_num=6)
-        result['portfolio'] = portfoilo
-
-        return Response(result)
 
 
