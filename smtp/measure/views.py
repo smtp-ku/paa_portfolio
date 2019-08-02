@@ -56,6 +56,11 @@ class ScenarioViewSet(viewsets.ModelViewSet):
 
         # Make Target List
         target_list = make_target_list(price_data, lookback_period)
+        if len(target_list) == 1:
+            return Response({
+                'state': '700',
+                'msg': target_list[0] + ' has not enough data'
+            })
 
         # Make Portfolio
         portfoilo = {}
@@ -93,10 +98,12 @@ def make_price_data(ticker_code_list, time_flag):
 def make_target_list(price_data, lookback_period):
     start_date = ""
     end_date = ""
+
     for code in price_data:
         code_dates = list(price_data[code].keys())
         if len(code_dates) < lookback_period:
-            price_data.pop(code)
+            # price_data.pop(code)
+            return [code]
         else:
             start_of_code = code_dates[lookback_period]
             end_of_code = code_dates[len(code_dates)-1]
@@ -178,8 +185,11 @@ def make_portfolio(target_date, price_data, lookback_period, protection, ref_num
 
     # Make Portfolio
     sorted_mom = sorted(mom_set.items(), key=operator.itemgetter(1), reverse=True)
-    for i in range(0, ref_num):
-        portfolio[sorted_mom[i][0]] = asset_ratio/ref_num
+    for i in range(0, len(sorted_mom)):
+        if i < ref_num:
+            portfolio[sorted_mom[i][0]] = asset_ratio/ref_num
+        else:
+            portfolio[sorted_mom[i][0]] = 0
 
     # Calculate Revenue
     total_revenue = 0
