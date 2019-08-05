@@ -32,7 +32,7 @@ class ScenarioViewSet(viewsets.ModelViewSet):
             try:
                 lookback_period = int(params['lb'])
                 ticker_code_list = params['codes'].split(',')
-                protection = int(params['protection'])
+                protection = float(params['protection'].replace('_', '.'))
                 if params['time_flag'] == 'daily':
                     time_flag = TimeFlag.DAILY
                 elif params['time_flag'] == 'monthly':
@@ -40,6 +40,7 @@ class ScenarioViewSet(viewsets.ModelViewSet):
                 else:
                     raise Exception
             except Exception:
+                print(Exception)
                 return Response({'msg': str(Exception)})
         if 'refNum' in params.keys():
             ref_num = int(params['refNum'])
