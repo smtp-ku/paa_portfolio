@@ -4,8 +4,6 @@
     <list default="true" id="c34ccacd-e4ff-413f-aa9c-95e6ed68590d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smtp/measure/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/smtp/measure/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smtp/ticker/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/smtp/ticker/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smtp/ticker/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/smtp/ticker/serializers.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -168,9 +166,9 @@
     </configuration>
     <list>
       <item itemvalue="Python.main" />
-      <item itemvalue="Python.runserver" />
       <item itemvalue="Python.makemigrations" />
       <item itemvalue="Python.migrate" />
+      <item itemvalue="Python.runserver" />
       <item itemvalue="Python.test" />
     </list>
   </component>

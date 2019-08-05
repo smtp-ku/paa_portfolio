@@ -81,8 +81,9 @@ class ScenarioViewSet(viewsets.ModelViewSet):
         cumulative_ratio = 1
         # Make Cumulative Revenue
         for date in portfolio:
-            portfolio[date]['cumulative'] = (portfolio[date]['revenue']+1) * cumulative_ratio
-            cumulative_ratio = cumulative_ratio * (portfolio[date]['revenue']+1)
+            if portfolio[date]['revenue'] != "Not yet":
+                portfolio[date]['cumulative'] = (portfolio[date]['revenue']+1) * cumulative_ratio
+                cumulative_ratio = cumulative_ratio * (portfolio[date]['revenue']+1)
 
         result['portfolio'] = portfolio
 
