@@ -41,18 +41,27 @@ class ScenarioViewSet(viewsets.ModelViewSet):
                     raise Exception
             except Exception:
                 return Response({'msg': str(Exception)})
+        if 'refNum' in params.keys():
+            ref_num = int(params['refNum'])
+        else:
+            ref_num = 6
 
         result = {
             'lookback_period': lookback_period,
             'ticker_list': ticker_code_list,
             'protection_degree': protection,
             'time_flag': params['time_flag'],
+            'ref_num': ref_num,
             'created_date': datetime.now()
         }
-        # TODO Scenario serialize
+
+        # TODO Custom Standard Bond Ticker
+        ticker_code_list.append('skb')
 
         # Make Price Data for Portfolio
         price_data = make_price_data(ticker_code_list, time_flag)
+        bond_price = price_data.pop('skb')
+        ticker_code_list.remove('skb')
 
         # Make Target List
         target_list = make_target_list(price_data, lookback_period)
@@ -63,11 +72,18 @@ class ScenarioViewSet(viewsets.ModelViewSet):
             })
 
         # Make Portfolio
-        portfoilo = {}
+        portfolio = {}
         for target_date in target_list:
             # TODO Portfolio Serialize
-            portfoilo[target_date] = make_portfolio(target_date, price_data, lookback_period, protection, ref_num=6)
-        result['portfolio'] = portfoilo
+            portfolio[target_date] = make_portfolio(target_date, price_data, bond_price, lookback_period, protection, ref_num=ref_num)
+
+        cumulative_ratio = 1
+        # Make Cumulative Revenue
+        for date in portfolio:
+            portfolio[date]['cumulative'] = (portfolio[date]['revenue']+1) * cumulative_ratio
+            cumulative_ratio = cumulative_ratio * (portfolio[date]['revenue']+1)
+
+        result['portfolio'] = portfolio
 
         return Response(result)
 
@@ -144,7 +160,7 @@ def get_average_price(ticker_code, target_date):
     return statistics.mean(month_price_list)
 
 
-def make_portfolio(target_date, price_data, lookback_period, protection, ref_num=6):
+def make_portfolio(target_date, price_data, bond_price, lookback_period, protection, ref_num=6):
 
     # Initialize
     result_set = {}
@@ -200,6 +216,10 @@ def make_portfolio(target_date, price_data, lookback_period, protection, ref_num
         target_price = code_price[date_list[target_index]]
         code_revenue = (target_price-start_price)/start_price * portfolio[code]
         total_revenue += code_revenue
+    bond_start = bond_price[date_list[target_index-1]]
+    bond_target = bond_price[date_list[target_index]]
+    bond_revenue = (bond_target-bond_start)/bond_start * bond_ratio
+    total_revenue += bond_revenue
 
     # Make Result
     result_set['momentum'] = mom_set
