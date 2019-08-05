@@ -5,10 +5,5 @@ from .models import Ticker
 class TickerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ticker
-        fields = (
-            'id',
-            'code',
-            'name',
-            'ticker',
-            'description'
-        )
+        fields = '__all__'
+
