@@ -10,6 +10,9 @@ from ticker.models import Ticker
 from datetime import datetime
 from pytz import timezone
 from enum import Enum
+import json
+import pandas
+from pandas import read_json
 from pandas.tseries.offsets import BMonthEnd
 import calendar
 
@@ -69,6 +72,21 @@ class CompatViewSet(viewsets.ModelViewSet):
             ticker_code_list = ticker_code_group.split(',')
             self.queryset = self.queryset.filter(ticker__code__in=ticker_code_list)
         return self.queryset
+
+    @action(detail=False)
+    def get_csv(self, request):
+        result = {}
+        ticker_set = Ticker.objects.all()
+        for ticker in ticker_set:
+            ticker_price = self.queryset.filter(ticker__code=ticker.code)
+            result[ticker.name] = {}
+            for price_set in ticker_price:
+                result[ticker.name][price_set.date.strftime('%Y-%m-%d')] = price_set.price
+        jd = json.dumps(result)
+        pd = read_json(jd)
+        print(pd)
+        pd.to_csv('temp.csv', mode='w')
+        return Response({'msg': 'result'})
 
     @action(detail=False)
     def update_price(self, request):
